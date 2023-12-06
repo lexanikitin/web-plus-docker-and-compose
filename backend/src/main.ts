@@ -3,10 +3,12 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { JWTAuthGuard } from './common/guards/jwt.guard';
 import helmet from "helmet";
+import cors from 'cors';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.use(helmet());
+  app.use(cors());
   app.useGlobalPipes(new ValidationPipe());
   const reflector = app.get(Reflector);
   app.useGlobalGuards(new JWTAuthGuard(reflector));
