@@ -8,7 +8,7 @@ services:
     env_file: ./backend/.env
     restart: always
     ports:
-      - "4000:4200"
+      - "4000:3000"
     networks:
       - db_network
       - frontend_network
