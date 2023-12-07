@@ -54,4 +54,3 @@ volumes:
 networks:
   db_network:
   frontend_network:
-    external: true
