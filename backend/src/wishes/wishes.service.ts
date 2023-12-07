@@ -127,4 +127,14 @@ export class WishesService {
       return {};
     }
   }
+  async wishAllByUsername(username: string): Promise<Wish[]> {
+    const wish = await this.wishesRepository.find({
+      where: { owner: { username } },
+      relations: {
+        owner: true,
+      },
+    });
+
+    return wish;
+  }
 }

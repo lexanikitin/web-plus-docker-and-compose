@@ -18,7 +18,6 @@ export class UsersService {
     constructor(
         @InjectRepository(User)
         private usersRepository: Repository<User>,
-        private wishesService: WishesService,
     ) {
     }
 
@@ -89,19 +88,5 @@ export class UsersService {
             throw new NotFoundException('Пользователь не найден');
         }
         return user;
-    }
-
-    async findUserWishes(username: string) {
-
-        const {wishes} = await this.usersRepository.findOne({
-            where: {username},
-            relations: ['wishes'],
-        });
-        if (!wishes) {
-            throw new NotFoundException('Желаний не найден');
-        }
-        return wishes;
-
-
     }
 }

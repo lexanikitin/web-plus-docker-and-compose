@@ -14,11 +14,15 @@ import { UserProfileResponceDto } from './dto/responce/user-profile-responce.dto
 import { FindUsersDto } from './dto/find-users.dto';
 import { GetUser } from '../common/decorators/getUser.decorator';
 import { User } from './entities/user.entity';
+import {WishesService} from "../wishes/wishes.service";
 
 @Controller('users')
 @UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+      private readonly usersService: UsersService,
+      private readonly wishesService: WishesService,
+  ) {}
 
   @Get('me')
   findMe(@GetUser() user: User): Promise<UserProfileResponceDto> {
@@ -26,7 +30,7 @@ export class UsersController {
   }
   @Get('me/wishes')
   findMyWishes(@GetUser() user: User) {
-    return this.usersService.findUserWishes(user.username);
+    return this.wishesService.wishAllByUsername(user.username);
   }
 
   @Patch('me')
