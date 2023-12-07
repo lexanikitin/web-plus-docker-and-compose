@@ -5,7 +5,7 @@ import { JWTAuthGuard } from './common/guards/jwt.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
-  app.enableCors();
+  app.enableCors({credentials:true});
   app.useGlobalPipes(new ValidationPipe());
   const reflector = app.get(Reflector);
   app.useGlobalGuards(new JWTAuthGuard(reflector));
