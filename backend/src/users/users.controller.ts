@@ -24,7 +24,7 @@ export class UsersController {
   findMe(@GetUser() user: User): Promise<UserProfileResponceDto> {
     return this.usersService.findById(user.id);
   }
-  @Get('me')
+  @Get('me/wishes')
   findMyWishes(@GetUser() user: User) {
     return this.usersService.findUserWishes(user.username);
   }
