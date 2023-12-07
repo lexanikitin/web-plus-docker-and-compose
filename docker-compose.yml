@@ -9,11 +9,11 @@ services:
     restart: always
     ports:
       - "4000:3000"
+    depends_on:
+      - database
     networks:
       - db_network
       - frontend_network
-    depends_on:
-      - database
 
   frontend:
     container_name: kpd-frontend
